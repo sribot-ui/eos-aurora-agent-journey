@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>EOS Aurora — Discovery Agent — Parcours de la solution</title>
+<style>
+  :root {
+    --surface-1: #fcfcfb;
+    --page-plane: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --gridline: #e1e0d9;
+    --border: rgba(11,11,11,0.10);
+
+    --blue: #2a78d6;
+    --aqua: #1baf7a;
+    --yellow: #eda100;
+    --green: #008300;
+    --violet: #4a3aa7;
+    --red: #e34948;
+    --magenta: #e87ba4;
+    --orange: #eb6834;
+
+    --blue-wash: #eaf2fc;
+    --aqua-wash: #e8f8f1;
+    --yellow-wash: #fdf3e0;
+    --violet-wash: #ede9fb;
+    --red-wash: #fce9e9;
+
+    --good: #0ca30c;
+    --warning: #fab219;
+    --serious: #ec835a;
+    --critical: #d03b3b;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page-plane);
+    color: var(--text-primary);
+  }
+
+  .deck {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+  }
+
+  /* ============ HEADER ============ */
+  .hero {
+    background: linear-gradient(135deg, #0F4761 0%, #1a5f82 100%);
+    border-radius: 16px;
+    padding: 48px 48px;
+    color: white;
+    margin-bottom: 40px;
+  }
+  .hero .tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 34px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    line-height: 1.2;
+  }
+  .hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.82);
+    max-width: 720px;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ============ SECTION TITLES ============ */
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin: 56px 0 6px;
+  }
+  .section-heading {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 28px;
+  }
+
+
+  /* ============ AGENTFORCE ACTION PICTOGRAM ============ */
+  .af-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #2a78d6 0%, #4a3aa7 100%);
+    position: relative;
+  }
+  .af-icon::before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+  }
+  .af-action-list {
+    list-style: none;
+    margin: 0 0 10px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .af-action-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+  .af-action-list li .af-icon { margin-top: 1px; }
+  .af-action-list li strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .af-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: linear-gradient(135deg, #2a78d6 0%, #4a3aa7 100%);
+    padding: 3px 8px 3px 6px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  .af-tag .af-icon { background: rgba(255,255,255,0.25); }
+  .af-tag .af-icon::before { background: white; }
+
+  /* ============ OPERATING MODEL ============ */
+  .om-model {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .om-band {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .om-band-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: 18px 20px;
+    color: white;
+  }
+  .om-band-label .om-eyebrow {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.75;
+  }
+  .om-band-label .om-title {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+  .om-band-body {
+    background: var(--surface-1);
+    padding: 16px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .om-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--page-plane);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 9px 13px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+  .om-chip strong { color: var(--text-primary); font-weight: 700; }
+  .om-chip .om-chip-icon { font-size: 15px; flex-shrink: 0; }
+  .om-chip-agent {
+    background: var(--blue-wash);
+    border-color: var(--blue);
+  }
+  .om-chip-agent .om-chip-icon { display: none; }
+
+  .om-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 2px 0 2px 220px;
+  }
+  .om-connector-line {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1;
+  }
+  .om-connector-text {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .om-cycle-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--yellow-wash);
+    border: 1px solid var(--yellow);
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 12.5px;
+    color: #6b4a00;
+    margin-top: 8px;
+    margin-bottom: 44px;
+  }
+  .om-cycle-note .om-cycle-icon { font-size: 18px; flex-shrink: 0; }
+
+  /* ============ EXECUTIVE SUMMARY (4 PHASES) ============ */
+  .exec-grid { display: flex; align-items: stretch; gap: 0; margin-bottom: 16px; }
+  .exec-card {
+    flex: 1;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-top: 5px solid var(--blue);
+    border-radius: 12px;
+    padding: 18px 16px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  .exec-card .ec-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+  .exec-card .ec-title { font-size: 16px; font-weight: 800; margin: 3px 0 2px; }
+  .exec-card .ec-goal { font-size: 11px; color: var(--text-secondary); line-height: 1.4; margin: 0 0 14px; min-height: 30px; }
+
+  .exec-milestones-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 6px; }
+  .exec-milestones { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .exec-milestones li { display: flex; align-items: flex-start; gap: 6px; font-size: 11.5px; color: var(--text-primary); font-weight: 600; line-height: 1.35; }
+  .exec-milestones li .em-flag { flex-shrink: 0; margin-top: 1px; font-size: 11px; }
+
+  .exec-raci { margin-top: auto; display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--gridline); padding-top: 12px; }
+  .exec-raci .er-row { display: flex; align-items: flex-start; gap: 7px; font-size: 10.8px; color: var(--text-secondary); line-height: 1.35; }
+  .exec-raci .er-role {
+    flex-shrink: 0; width: 78px; font-size: 9.5px; font-weight: 700;
+    padding: 2px 6px; border-radius: 6px; text-align: center;
+  }
+  .exec-raci .er-role.role-consultant { background: var(--yellow-wash); color: #8a5c00; }
+  .exec-raci .er-role.role-agent { background: var(--blue-wash); color: var(--blue); }
+  .exec-raci .er-role.role-stakeholder { background: var(--aqua-wash); color: #0d6b46; }
+
+  .exec-arrow { display: flex; align-items: center; justify-content: center; width: 22px; color: var(--text-muted); font-size: 16px; flex-shrink: 0; }
+
+  /* ============ MACRO OVERVIEW (4 PHASES) ============ */
+  .macro-overview { display: flex; align-items: stretch; gap: 0; margin-bottom: 48px; }
+  .macro-phase {
+    flex: 1;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--blue);
+    border-radius: 10px;
+    padding: 16px 14px;
+  }
+  .macro-phase .mp-num {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--text-muted);
+  }
+  .macro-phase .mp-title { font-size: 14.5px; font-weight: 800; margin: 4px 0 8px; }
+  .macro-phase .mp-out { font-size: 11px; color: var(--text-secondary); line-height: 1.45; }
+  .macro-phase .mp-out strong { color: var(--text-primary); }
+  .macro-arrow {
+    display: flex; align-items: center; justify-content: center;
+    width: 26px; color: var(--text-muted); font-size: 18px; flex-shrink: 0;
+  }
+
+  /* ============ SNAKE PATH (STEPS · ACTIONS · OUTPUTS) ============ */
+  .snake-phase { margin-bottom: 60px; }
+  .snake-phase-head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
+  .snake-phase-badge {
+    width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 800; font-size: 16px;
+  }
+  .snake-phase-head h3 { font-size: 20px; font-weight: 800; margin: 0 0 3px; }
+  .snake-phase-head p { font-size: 12.5px; color: var(--text-secondary); margin: 0; max-width: 680px; line-height: 1.5; }
+
+  .snake-legend { display: flex; gap: 14px; margin-bottom: 16px; }
+  .snake-legend .sl-item { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--text-muted); }
+  .snake-legend .sl-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  .snake-track { display: flex; flex-direction: column; gap: 0; }
+  .snake-row { display: flex; align-items: stretch; gap: 12px; }
+  .snake-row.rtl { flex-direction: row-reverse; }
+  .snake-turn-row { display: flex; justify-content: center; padding: 2px 0; }
+  .snake-turn-row .glyph { font-size: 15px; color: var(--text-muted); }
+
+  .snake-step {
+    flex: 1; min-width: 0;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 15px;
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .snake-step-top { display: flex; align-items: center; gap: 8px; }
+  .snake-step-num {
+    width: 23px; height: 23px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10.5px; font-weight: 800; color: white;
+  }
+  .snake-step-title { font-size: 12.8px; font-weight: 700; line-height: 1.3; }
+
+  .snake-roles { display: flex; gap: 5px; flex-wrap: wrap; }
+  .snake-role {
+    font-size: 9px; font-weight: 700; padding: 3px 7px; border-radius: 8px;
+    background: var(--gridline); color: var(--text-muted); opacity: 0.4;
+    white-space: nowrap;
+  }
+  .snake-role.active { opacity: 1; }
+  .snake-role.active.role-agent { background: var(--blue-wash); color: var(--blue); }
+  .snake-role.active.role-consultant { background: var(--yellow-wash); color: #8a5c00; }
+  .snake-role.active.role-stakeholder { background: var(--aqua-wash); color: #0d6b46; }
+
+  .snake-actions { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+  .snake-actions li { display: flex; align-items: flex-start; gap: 6px; font-size: 10.6px; color: var(--text-secondary); line-height: 1.4; }
+  .snake-actions li .role-icon { flex-shrink: 0; margin-top: 1px; font-size: 10.5px; }
+  .snake-actions li .af-icon { margin-top: 1px; }
+
+  .snake-output {
+    margin-top: auto;
+    font-size: 10.3px;
+    background: var(--page-plane);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 7px 9px;
+    color: var(--text-secondary);
+    line-height: 1.35;
+  }
+  .snake-output strong { color: var(--text-primary); }
+
+  .snake-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 3px 8px;
+    border-radius: 7px;
+    align-self: flex-start;
+    margin-bottom: -2px;
+  }
+  .snake-category.cat-admin { background: var(--violet-wash); color: #4a3aa7; }
+  .snake-category.cat-portal { background: var(--blue-wash); color: var(--blue); }
+
+  .snake-arrow-h {
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); font-size: 17px; flex-shrink: 0; width: 16px;
+  }
+  .snake-row.rtl .snake-arrow-h { transform: scaleX(-1); }
+
+  .snake-phase-output {
+    margin-top: 16px;
+    border-left: 4px solid var(--blue);
+    background: var(--surface-1);
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-radius: 0 10px 10px 0;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .snake-phase-output strong { color: var(--text-primary); }
+  .snake-phase-output .spo-icon { font-size: 16px; flex-shrink: 0; }
+
+  /* ============ CARDS GRID ============ */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .card p {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ============ FUNNEL / PROCESS FLOW ============ */
+  .flow-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 40px;
+  }
+  .flow-box {
+    flex: 1;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 16px;
+    position: relative;
+  }
+  .flow-box h4 {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .flow-box .dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .flow-box p {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    color: var(--text-muted);
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  /* ============ SCORING VISUAL ============ */
+  .scoring-panel {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+  }
+  .dim-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gridline);
+  }
+  .dim-row:last-child { border-bottom: none; }
+  .dim-label {
+    width: 140px;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .dim-weight {
+    width: 48px;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .dim-bar-track {
+    flex: 1;
+    height: 10px;
+    background: var(--gridline);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .dim-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+  }
+  .dim-desc {
+    width: 300px;
+    flex-shrink: 0;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* ============ VERDICT SCALE ============ */
+  .verdict-scale {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .verdict-chip {
+    flex: 1;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .verdict-chip .range {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.75;
+    margin-bottom: 4px;
+  }
+  .verdict-chip .label {
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  /* ============ OUTPUT MOCKUP ============ */
+  .output-mockup {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .output-header {
+    background: #0F4761;
+    color: white;
+    padding: 16px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .output-body {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .output-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .output-metric .m-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .output-metric .m-value {
+    font-size: 28px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ============ FOOTER NOTE ============ */
+  .footnote {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--gridline);
+  }
+
+  @media print {
+    body { background: white; }
+    .deck { max-width: 100%; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="tag">EOS Aurora · Programme Royal Canin / Mars</span>
+    <h1>L'agent EOS Aurora — un opérateur unique sur les 4 phases du programme</h1>
+    <p>De la qualification d'un marché jusqu'à la confiance dans son déploiement, le même agent accompagne consultants Salesforce et stakeholders client à chaque phase — avec un point de contrôle humain à chaque bascule critique.</p>
+  </div>
+
+  <!-- ============ EXECUTIVE SUMMARY ============ -->
+  <div class="section-title">Executive summary</div>
+  <div class="section-heading">4 phases, les jalons clés, qui fait quoi</div>
+  <p style="font-size:13.5px; color:var(--text-secondary); max-width:820px; margin:-8px 0 24px; line-height:1.55;">
+    Le même agent accompagne le programme de bout en bout. À chaque phase, le <strong>consultant SF</strong> cadre et valide, l'<strong>agent</strong> exécute au contact du <strong>stakeholder client</strong> — avec un point de contrôle humain avant de transmettre l'output à la phase suivante.
+  </p>
+
+  <div class="exec-grid">
+    <div class="exec-card" style="border-top-color:#4a3aa7;">
+      <div class="ec-num">Phase 1</div>
+      <div class="ec-title">Discovery</div>
+      <p class="ec-goal">Qualifier la readiness d'un marché avant tout engagement.</p>
+      <div class="exec-milestones-label">Jalons</div>
+      <ul class="exec-milestones">
+        <li><span class="em-flag">⚙️</span>Set up questionnaire, cloud &amp; documentation</li>
+        <li><span class="em-flag">💬</span>Réponse au questionnaire sur le portail client</li>
+        <li><span class="em-flag">🚩</span>Scorecard validée + verdict GO / ADAPT / WAIT</li>
+      </ul>
+      <div class="exec-raci">
+        <div class="er-row"><span class="er-role role-consultant">Consultant</span>Set up admin (questionnaire, cloud, doc), tranche les flags, décide</div>
+        <div class="er-row"><span class="er-role role-agent">Agent</span>Interviewe sur le portail (s'appuie sur la doc), score, consigne</div>
+        <div class="er-row"><span class="er-role role-stakeholder">Stakeholder</span>Répond aux questions sur le portail client</div>
+      </div>
+    </div>
+    <div class="exec-arrow">→</div>
+    <div class="exec-card" style="border-top-color:#2a78d6;">
+      <div class="ec-num">Phase 2</div>
+      <div class="ec-title">F2T — Fit to Template</div>
+      <p class="ec-goal">Deep dive sur les focus areas à risque, vs. le core model.</p>
+      <div class="exec-milestones-label">Jalons</div>
+      <ul class="exec-milestones">
+        <li><span class="em-flag">🚩</span>Scope self-learning cadré (admin)</li>
+        <li><span class="em-flag">🚩</span>Deep dive terrain réalisé</li>
+        <li><span class="em-flag">🚩</span>Cartographie fit/gap validée</li>
+      </ul>
+      <div class="exec-raci">
+        <div class="er-row"><span class="er-role role-consultant">Consultant</span>Cadre le scope, valide les écarts</div>
+        <div class="er-row"><span class="er-role role-agent">Agent</span>Deep dive, compare au core model, apprend</div>
+        <div class="er-row"><span class="er-role role-stakeholder">Stakeholder</span>Détaille ses pratiques (mêmes personas)</div>
+      </div>
+    </div>
+    <div class="exec-arrow">→</div>
+    <div class="exec-card" style="border-top-color:#1baf7a;">
+      <div class="ec-num">Phase 3</div>
+      <div class="ec-title">Design</div>
+      <p class="ec-goal">Cadrer les gaps et produire les livrables client type.</p>
+      <div class="exec-milestones-label">Jalons</div>
+      <ul class="exec-milestones">
+        <li><span class="em-flag">🚩</span>Gaps high-level consolidés</li>
+        <li><span class="em-flag">🚩</span>Templates core model générés</li>
+        <li><span class="em-flag">🚩</span>Sign-off stakeholder obtenu</li>
+      </ul>
+      <div class="exec-raci">
+        <div class="er-row"><span class="er-role role-consultant">Consultant</span>Priorise les gaps, sign-off final</div>
+        <div class="er-row"><span class="er-role role-agent">Agent</span>Génère et ajuste les templates</div>
+        <div class="er-row"><span class="er-role role-stakeholder">Stakeholder</span>Valide les livrables métier</div>
+      </div>
+    </div>
+    <div class="exec-arrow">→</div>
+    <div class="exec-card" style="border-top-color:#eda100;">
+      <div class="ec-num">Phase 4</div>
+      <div class="ec-title">Build</div>
+      <p class="ec-goal">Prouver la fiabilité du déploiement avant réplication.</p>
+      <div class="exec-milestones-label">Jalons</div>
+      <ul class="exec-milestones">
+        <li><span class="em-flag">🚩</span>Pilote configuré et testé</li>
+        <li><span class="em-flag">🚩</span>UAT stakeholder passée</li>
+        <li><span class="em-flag">🚩</span>Score de confiance rendu</li>
+      </ul>
+      <div class="exec-raci">
+        <div class="er-row"><span class="er-role role-consultant">Consultant</span>Valide le score, décide la réplication</div>
+        <div class="er-row"><span class="er-role role-agent">Agent</span>Configure, teste, calcule la confiance</div>
+        <div class="er-row"><span class="er-role role-stakeholder">Stakeholder</span>Recette les parcours métier (UAT)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MACRO OVERVIEW ============ -->
+  <div class="section-title">Vue d'ensemble détaillée</div>
+  <div class="section-heading">Un agent, quatre phases, un fil continu</div>
+  <p style="font-size:13.5px; color:var(--text-secondary); max-width:820px; margin:-8px 0 24px; line-height:1.55;">
+    Chaque phase a son propre operating model — mais toutes suivent la même logique : le <strong>consultant SF cadre</strong>, l'<strong>agent exécute</strong> au contact du <strong>stakeholder client</strong>, et un point de contrôle humain valide avant de transmettre l'output à la phase suivante.
+  </p>
+  <div class="macro-overview">
+    <div class="macro-phase" style="border-top-color:#4a3aa7;">
+      <div class="mp-num">Phase 1</div>
+      <div class="mp-title">Discovery</div>
+      <div class="mp-out">Score de maturité + verdict <strong>GO / ADAPT / WAIT</strong> par marché</div>
+    </div>
+    <div class="macro-arrow">→</div>
+    <div class="macro-phase" style="border-top-color:#2a78d6;">
+      <div class="mp-num">Phase 2</div>
+      <div class="mp-title">F2T — Fit to Template</div>
+      <div class="mp-out">Cartographie fit/gap détaillée par <strong>focus area</strong> vs. core model</div>
+    </div>
+    <div class="macro-arrow">→</div>
+    <div class="macro-phase" style="border-top-color:#1baf7a;">
+      <div class="mp-num">Phase 3</div>
+      <div class="mp-title">Design</div>
+      <div class="mp-out"><strong>Gaps high-level</strong> + fichiers core model templatisés (audits, email-to-case…)</div>
+    </div>
+    <div class="macro-arrow">→</div>
+    <div class="macro-phase" style="border-top-color:#eda100;">
+      <div class="mp-num">Phase 4</div>
+      <div class="mp-title">Build</div>
+      <div class="mp-out">Niveau de <strong>confiance</strong> — déploiement &amp; réplicabilité</div>
+    </div>
+  </div>
+
+  <div class="snake-legend">
+    <span class="sl-item"><span class="sl-dot" style="background:var(--blue);"></span>Agent (Agentforce)</span>
+    <span class="sl-item"><span class="sl-dot" style="background:#eda100;"></span>Consultant SF</span>
+    <span class="sl-item"><span class="sl-dot" style="background:var(--aqua);"></span>Stakeholder client</span>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PHASE 1 — DISCOVERY -->
+  <!-- ================================================================ -->
+  <div class="snake-phase">
+    <div class="snake-phase-head">
+      <div class="snake-phase-badge" style="background:#4a3aa7;">1</div>
+      <div>
+        <h3>Discovery — qualifier la readiness d'un marché</h3>
+        <p>L'agent conduit l'entretien de bout en bout avec les personas métier du marché ; le consultant n'intervient qu'en garde-fou d'interprétation (human in the loop).</p>
+      </div>
+    </div>
+
+    <div class="snake-track">
+      <div class="snake-row">
+        <div class="snake-step">
+          <span class="snake-category cat-admin">⚙️ Administratif — back-office consultant</span>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">1</div><div class="snake-step-title">Set up questionnaire &amp; scope pays</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">🧭</span>Sélectionne le marché et active les volets CROSS / CS / FEX</li>
+            <li><span class="role-icon">📝</span>Configure le set de questions applicable au scope pays</li>
+            <li><span class="role-icon">👥</span>Désigne les personas métier à interroger</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Questionnaire configuré + scope pays défini</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <span class="snake-category cat-admin">⚙️ Administratif — back-office consultant</span>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">2</div><div class="snake-step-title">Set up cloud &amp; documentation</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">☁️</span>Paramètre l'environnement Cloud (CG Cloud / Service Cloud) associé au marché</li>
+            <li><span class="role-icon">📚</span>Dépose la documentation de référence (process, core model, standards pays) que l'agent utilisera</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Environnement + base documentaire prêts pour l'agent</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <span class="snake-category cat-portal">💬 Portail client — customer facing</span>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">3</div><div class="snake-step-title">Réponse au questionnaire (portail)</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role active role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Pose</strong> les questions en langage naturel à chaque persona sur le portail</li>
+            <li><span class="af-icon"></span><strong>S'appuie</strong> sur la documentation déposée pour éclairer/reformuler une question</li>
+            <li><span class="af-icon"></span><strong>Relance</strong> et approfondit les réponses incomplètes</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Réponses consignées en temps réel dans le référentiel</div>
+        </div>
+      </div>
+
+      <div class="snake-turn-row"><span class="glyph">↩</span></div>
+
+      <div class="snake-row">
+        <div class="snake-step">
+          <span class="snake-category cat-portal">💬 Portail client — customer facing</span>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">4</div><div class="snake-step-title">Détection des signaux</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role active role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Détecte</strong> les réponses sensibles (flag critique)</li>
+            <li><span class="af-icon"></span><strong>Catégorise</strong> par dimension Technical/Process/Gov/Change</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Réponses flaggées prêtes pour scoring</div>
+        </div>
+      </div>
+
+      <div class="snake-turn-row"><span class="glyph">↩</span></div>
+
+      <div class="snake-row rtl">
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">5</div><div class="snake-step-title">Scoring automatique</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Convertit</strong> chaque réponse en score pondéré</li>
+            <li><span class="af-icon"></span><strong>Agrège</strong> par dimension (35/30/20/15%)</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Scorecard brute par dimension</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">6</div><div class="snake-step-title">Validation — Human in the loop</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">🧭</span>Tranche sur les flags critiques et ambiguïtés</li>
+            <li><span class="role-icon">✅</span>Valide ou corrige le score avant diffusion</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Scorecard validée</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#0F4761;">7</div><div class="snake-step-title">Décision programme</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role active role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">📊</span>Présente la scorecard au comité de pilotage</li>
+            <li><span class="role-icon">🎯</span>Décide déploiement, adaptation ou attente</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Verdict GO / ADAPT / WAIT</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="snake-phase-output">
+      <span class="spo-icon">📤</span>
+      <span>Sortie de phase → <strong>Score de maturité + verdict GO/ADAPT/WAIT</strong>, et la liste des focus areas à approfondir en F2T</span>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PHASE 2 — F2T (FIT TO TEMPLATE) -->
+  <!-- ================================================================ -->
+  <div class="snake-phase">
+    <div class="snake-phase-head">
+      <div class="snake-phase-badge" style="background:#2a78d6;">2</div>
+      <div>
+        <h3>F2T — Fit to Template</h3>
+        <p>Sur les focus areas dégagées en Discovery, l'agent revient vers les <strong>mêmes personas</strong> pour un deep dive, et compare leurs pratiques au core model — dans un périmètre d'apprentissage cadré par l'admin (self-learning scope).</p>
+      </div>
+    </div>
+
+    <div class="snake-track">
+      <div class="snake-row">
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">1</div><div class="snake-step-title">Sélection des focus areas</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">🧭</span>Reprend les zones à risque identifiées en Discovery</li>
+            <li><span class="role-icon">📐</span>Définit le <strong>scope self-learning</strong> confié à l'agent (admin)</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Périmètre de deep dive + scope d'apprentissage cadré</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">2</div><div class="snake-step-title">Deep dive terrain</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role active role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Revient</strong> vers les mêmes personas que le Discovery</li>
+            <li><span class="af-icon"></span><strong>Questionne en profondeur</strong> sur chaque focus area</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Pratiques détaillées documentées par focus area</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">3</div><div class="snake-step-title">Apprentissage continu</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Affine</strong> sa compréhension du marché à chaque échange (self-learning)</li>
+            <li><span class="af-icon"></span><strong>Reste borné</strong> au scope défini par l'admin</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Modèle de compréhension du marché à jour</div>
+        </div>
+      </div>
+
+      <div class="snake-turn-row"><span class="glyph">↩</span></div>
+
+      <div class="snake-row rtl">
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">4</div><div class="snake-step-title">Comparaison au core model</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Compare</strong> chaque pratique locale au core model de référence</li>
+            <li><span class="af-icon"></span><strong>Qualifie</strong> l'écart : fit direct, adaptable, ou gap</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Cartographie fit/gap par focus area</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">5</div><div class="snake-step-title">Revue consultant</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">🧭</span>Valide la qualification de chaque écart</li>
+            <li><span class="role-icon">✅</span>Priorise les gaps qui iront en Design</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Cartographie fit/gap validée et priorisée</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#1baf7a;">6</div><div class="snake-step-title">Restitution stakeholders</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role active role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">📊</span>Partage les écarts avec les stakeholders métier</li>
+            <li><span class="role-icon">🤝</span>Aligne sur les priorités avant le Design</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Écarts alignés, prêts pour le Design</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="snake-phase-output">
+      <span class="spo-icon">📤</span>
+      <span>Sortie de phase → <strong>Cartographie fit/gap détaillée par focus area</strong> comparée au core model</span>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PHASE 3 — DESIGN -->
+  <!-- ================================================================ -->
+  <div class="snake-phase">
+    <div class="snake-phase-head">
+      <div class="snake-phase-badge" style="background:#1baf7a;">3</div>
+      <div>
+        <h3>Design — cadrer les gaps et templatiser les livrables client</h3>
+        <p>L'agent consolide les écarts remontés du F2T et génère les fichiers core model templatisés (activités d'audit, email-to-case, etc.) que le consultant et le stakeholder valident ensemble.</p>
+      </div>
+    </div>
+
+    <div class="snake-track">
+      <div class="snake-row">
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">1</div><div class="snake-step-title">Consolidation des gaps</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Agrège</strong> les écarts issus du F2T par thème</li>
+            <li><span class="af-icon"></span><strong>Structure</strong> une vue high-level des gaps potentiels</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Rapport de gaps high-level</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">2</div><div class="snake-step-title">Analyse d'impact</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">🧭</span>Priorise les gaps critiques vs. mineurs</li>
+            <li><span class="role-icon">📐</span>Décide quels gaps nécessitent un template dédié</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Liste de gaps priorisés à traiter</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">3</div><div class="snake-step-title">Génération des templates</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Génère</strong> les fichiers core model (audits, email-to-case…)</li>
+            <li><span class="af-icon"></span><strong>Adapte</strong> chaque template aux spécificités du marché</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — 1re version des fichiers core model templatisés</div>
+        </div>
+      </div>
+
+      <div class="snake-turn-row"><span class="glyph">↩</span></div>
+
+      <div class="snake-row rtl">
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#1baf7a;">4</div><div class="snake-step-title">Revue stakeholder</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role active role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">🔎</span>Vérifie que les templates reflètent le métier local</li>
+            <li><span class="role-icon">💬</span>Remonte les ajustements nécessaires</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Feedback métier consolidé</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">5</div><div class="snake-step-title">Ajustement des livrables</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Intègre</strong> le feedback dans les fichiers templatisés</li>
+            <li><span class="af-icon"></span><strong>Revalide</strong> la cohérence avec le core model</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Templates ajustés</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">6</div><div class="snake-step-title">Sign-off Design</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role active role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">✅</span>Valide formellement gaps + templates avec le stakeholder</li>
+            <li><span class="role-icon">📦</span>Transmet le dossier au Build</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Dossier de Design validé</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="snake-phase-output">
+      <span class="spo-icon">📤</span>
+      <span>Sortie de phase → <strong>Gaps high-level</strong> + <strong>fichiers core model templatisés</strong> (activités d'audit, email-to-case, etc.)</span>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PHASE 4 — BUILD -->
+  <!-- ================================================================ -->
+  <div class="snake-phase">
+    <div class="snake-phase-head">
+      <div class="snake-phase-badge" style="background:#eda100;">4</div>
+      <div>
+        <h3>Build — mesurer la confiance de déploiement et de réplication</h3>
+        <p>L'agent instrumente le déploiement pilote, croise les résultats aux templates du Design, et restitue un niveau de confiance chiffré — pour ce marché et pour sa réplication aux marchés suivants.</p>
+      </div>
+    </div>
+
+    <div class="snake-track">
+      <div class="snake-row">
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">1</div><div class="snake-step-title">Configuration pilote</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">🛠️</span>Configure l'environnement à partir du dossier Design</li>
+            <li><span class="af-icon"></span><strong>Assiste</strong> le paramétrage à partir des templates core model</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Environnement pilote configuré</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">2</div><div class="snake-step-title">Tests de conformité</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Exécute</strong> les scénarios de test vs. le design attendu</li>
+            <li><span class="af-icon"></span><strong>Détecte</strong> les écarts de configuration</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Rapport de conformité au design</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#1baf7a;">3</div><div class="snake-step-title">Recette métier (UAT)</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role active role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">🧪</span>Teste les parcours métier réels (audits, cases…)</li>
+            <li><span class="role-icon">💬</span>Remonte les anomalies terrain</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Feedback UAT consolidé</div>
+        </div>
+      </div>
+
+      <div class="snake-turn-row"><span class="glyph">↩</span></div>
+
+      <div class="snake-row rtl">
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">4</div><div class="snake-step-title">Monitoring qualité</div></div>
+          <div class="snake-roles">
+            <span class="snake-role role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Surveille</strong> les indicateurs de stabilité et d'adoption</li>
+            <li><span class="af-icon"></span><strong>Agrège</strong> tests + UAT + monitoring en un score</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Indicateurs de qualité consolidés</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">5</div><div class="snake-step-title">Score de confiance</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role active role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="af-icon"></span><strong>Calcule</strong> le niveau de confiance déploiement</li>
+            <li><span class="role-icon">🧭</span>Le consultant valide le score avant diffusion</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Score de confiance déploiement + réplication</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#0F4761;">6</div><div class="snake-step-title">Décision de réplication</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role active role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">📊</span>Présente le score au comité de pilotage</li>
+            <li><span class="role-icon">🎯</span>Go/no-go pour répliquer sur les marchés suivants</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Décision de réplication + plan de rollout</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="snake-phase-output">
+      <span class="spo-icon">📤</span>
+      <span>Sortie de phase → <strong>Niveau de confiance</strong> du déploiement et de sa <strong>réplicabilité</strong> aux marchés suivants</span>
+    </div>
+  </div>
+
+  <!-- ============ STEP 2 DETAIL : LES 3 VOLETS ============ -->
+  <div class="section-title">Discovery — zoom</div>
+  <div class="section-heading">Un questionnaire organisé en 3 volets métier</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon" style="background:var(--blue-wash); color:var(--blue);">🧾</div>
+      <h3>CROSS — 13 questions</h3>
+      <p>Comptes clients, prospects, données, conformité GDPR. Le socle commun à tous les marchés.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:var(--aqua-wash); color:var(--aqua);">🎧</div>
+      <h3>CS — 16 questions</h3>
+      <p>Organisation du Service Client, canaux de contact, outils actuels, SLAs.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:var(--yellow-wash); color:var(--yellow);">🚗</div>
+      <h3>FEX — 20 questions</h3>
+      <p>Vente terrain, planification de visites, audits magasin, outils des commerciaux.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:var(--red-wash); color:var(--red);">⚠️</div>
+      <h3>Flags critiques</h3>
+      <p>Certaines réponses déclenchent une alerte : c'est le signal qui appelle la relecture du consultant, pas une décision automatique.</p>
+    </div>
+  </div>
+
+  <!-- ============ STEP 3 DETAIL : SCORING ============ -->
+  <div class="section-title">Discovery — zoom</div>
+  <div class="section-heading">4 dimensions, chacune pondérée selon son impact réel</div>
+
+  <div class="scoring-panel">
+    <div class="dim-row">
+      <div class="dim-label" style="color:var(--blue);">TECHNICAL</div>
+      <div class="dim-weight">35%</div>
+      <div class="dim-bar-track"><div class="dim-bar-fill" style="width:35%; background:var(--blue);"></div></div>
+      <div class="dim-desc">Qualité des données, outils connectables, risque de blocage avant même le déploiement</div>
+    </div>
+    <div class="dim-row">
+      <div class="dim-label" style="color:var(--aqua);">PROCESS</div>
+      <div class="dim-weight">30%</div>
+      <div class="dim-bar-track"><div class="dim-bar-fill" style="width:30%; background:var(--aqua);"></div></div>
+      <div class="dim-desc">Les pratiques actuelles du marché correspondent-elles au modèle standard ?</div>
+    </div>
+    <div class="dim-row">
+      <div class="dim-label" style="color:var(--violet);">GOVERNANCE</div>
+      <div class="dim-weight">20%</div>
+      <div class="dim-bar-track"><div class="dim-bar-fill" style="width:20%; background:var(--violet);"></div></div>
+      <div class="dim-desc">Conformité légale (GDPR), gouvernance des données, complexité multi-pays</div>
+    </div>
+    <div class="dim-row">
+      <div class="dim-label" style="color:var(--orange);">CHANGE</div>
+      <div class="dim-weight">15%</div>
+      <div class="dim-bar-track"><div class="dim-bar-fill" style="width:15%; background:var(--orange);"></div></div>
+      <div class="dim-desc">Capacité humaine à absorber le changement — récupérable avec un bon accompagnement</div>
+    </div>
+  </div>
+
+  <!-- ============ STEP 4/5 : OUTPUT ============ -->
+  <div class="section-title">Discovery — zoom</div>
+  <div class="section-heading">Ce que le comité de pilotage reçoit</div>
+
+  <div class="output-mockup">
+    <div class="output-header">🛡️ Validé par le consultant · 📍 Exemple — Marché fictif</div>
+    <div class="output-body">
+      <div class="output-metric">
+        <span class="m-label">Score global</span>
+        <span class="m-value" style="color:var(--warning);">54.5%</span>
+      </div>
+      <div class="output-metric">
+        <span class="m-label">Verdict</span>
+        <span class="m-value" style="color:var(--warning);">ADAPT ⚠️</span>
+      </div>
+      <div class="output-metric">
+        <span class="m-label">Point fort</span>
+        <span class="m-value" style="font-size:15px; font-weight:600;">Processus formalisés (70%)</span>
+      </div>
+      <div class="output-metric">
+        <span class="m-label">Point d'attention</span>
+        <span class="m-value" style="font-size:15px; font-weight:600; color:var(--critical);">Qualité data (40%)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-heading" style="font-size:18px; margin-bottom:20px;">3 verdicts possibles</div>
+  <div class="verdict-scale">
+    <div class="verdict-chip" style="background:var(--aqua-wash);">
+      <div class="range" style="color:var(--aqua);">Score élevé</div>
+      <div class="label" style="color:#0d6b46;">GO ✓</div>
+    </div>
+    <div class="verdict-chip" style="background:var(--yellow-wash);">
+      <div class="range" style="color:var(--yellow);">Score moyen</div>
+      <div class="label" style="color:#8a5c00;">ADAPT ⚠️</div>
+    </div>
+    <div class="verdict-chip" style="background:var(--red-wash);">
+      <div class="range" style="color:var(--red);">Score faible</div>
+      <div class="label" style="color:#a12d2c;">WAIT ⛔</div>
+    </div>
+  </div>
+
+  <!-- ============ WHY IT MATTERS ============ -->
+  <div class="section-title">Pourquoi c'est utile</div>
+  <div class="section-heading">Ce que la solution apporte concrètement</div>
+
+  <div class="flow-row">
+    <div class="flow-box">
+      <h4><span class="dot" style="background:var(--blue);"></span>Objectivité</h4>
+      <p>Remplace une évaluation qualitative subjective par un score reproductible, basé sur des critères documentés et justifiés.</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <h4><span class="dot" style="background:var(--aqua);"></span>Vitesse</h4>
+      <p>Un entretien structuré remplace des semaines d'ateliers exploratoires pour qualifier la readiness d'un marché.</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <h4><span class="dot" style="background:var(--violet);"></span>Priorisation</h4>
+      <p>Le programme sait exactement quels marchés déployer en premier, et quels risques traiter avant le go-live.</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <h4><span class="dot" style="background:var(--orange);"></span>Transparence</h4>
+      <p>Chaque score est justifiable auprès des stakeholders locaux — la méthodologie est documentée et explicable.</p>
+    </div>
+  </div>
+
+  <div class="footnote">
+    EOS Aurora — Discovery Agent · Programme Royal Canin / Mars · Cluster North Europe
+  </div>
+
+</div>
+</body>
+</html>
