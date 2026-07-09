@@ -386,6 +386,8 @@
   }
   .snake-category.cat-admin { background: var(--violet-wash); color: #4a3aa7; }
   .snake-category.cat-portal { background: var(--blue-wash); color: var(--blue); }
+  .snake-category.cat-learning { background: var(--yellow-wash); color: #8a5c00; }
+  .snake-category.cat-gap { background: var(--aqua-wash); color: #0d6b46; }
 
   .snake-arrow-h {
     display: flex; align-items: center; justify-content: center;
@@ -658,17 +660,17 @@
     <div class="exec-card" style="border-top-color:#2a78d6;">
       <div class="ec-num">Phase 2</div>
       <div class="ec-title">F2T — Fit to Template</div>
-      <p class="ec-goal">Deep dive on the at-risk focus areas, vs. the core model.</p>
+      <p class="ec-goal">Define the top-down approach, self-learn the Core Model, surface the real gaps.</p>
       <div class="exec-milestones-label">Milestones</div>
       <ul class="exec-milestones">
-        <li><span class="em-flag">🚩</span>Self-learning scope framed (admin)</li>
-        <li><span class="em-flag">🚩</span>Field deep dive completed</li>
-        <li><span class="em-flag">🚩</span>Fit/gap map validated</li>
+        <li><span class="em-flag">⚙️</span>Top-down approach &amp; flexibility level defined</li>
+        <li><span class="em-flag">🎓</span>Core Model self-learning + focus area deep dive</li>
+        <li><span class="em-flag">🔍</span>As-is vs. Core Model gap map validated</li>
       </ul>
       <div class="exec-raci">
-        <div class="er-row"><span class="er-role role-consultant">Consultant</span>Frames the scope, validates the gaps</div>
-        <div class="er-row"><span class="er-role role-agent">Agent</span>Deep dives, compares to the core model, learns</div>
-        <div class="er-row"><span class="er-role role-stakeholder">Stakeholder</span>Details their practices (same personas)</div>
+        <div class="er-row"><span class="er-role role-consultant">Consultant</span>Defines top-down approach, flexibility level &amp; learning modules, validates gaps</div>
+        <div class="er-row"><span class="er-role role-agent">Agent</span>Runs the self-learning, deep dives, clarifies as-is vs. Core Model gaps</div>
+        <div class="er-row"><span class="er-role role-stakeholder">Stakeholder</span>Self-learns the Core Model, details their as-is practices</div>
       </div>
     </div>
     <div class="exec-arrow">→</div>
@@ -723,7 +725,7 @@
     <div class="macro-phase" style="border-top-color:#2a78d6;">
       <div class="mp-num">Phase 2</div>
       <div class="mp-title">F2T — Fit to Template</div>
-      <div class="mp-out">Detailed fit/gap map per <strong>focus area</strong> vs. the core model</div>
+      <div class="mp-out">Top-down approach defined, Core Model self-learned, <strong>as-is vs. Core Model gaps</strong> mapped</div>
     </div>
     <div class="macro-arrow">→</div>
     <div class="macro-phase" style="border-top-color:#1baf7a;">
@@ -887,52 +889,74 @@
       <div class="snake-phase-badge" style="background:#2a78d6;">2</div>
       <div>
         <h3>F2T — Fit to Template</h3>
-        <p>On the focus areas surfaced in Discovery, the agent goes back to the <strong>same personas</strong> for a deep dive, and compares their practices against the core model — within a self-learning scope framed by the admin.</p>
+        <p>Three things happen at once: the project defines its <strong>top-down approach</strong> and how much flexibility/localization the platform allows; the client stakeholders <strong>self-learn the Core Model</strong> with the agent's help and deep dive on the Discovery focus areas; and the agent helps surface the <strong>real gaps</strong> between the local as-is and the Core Model.</p>
       </div>
     </div>
 
     <div class="snake-track">
       <div class="snake-row">
         <div class="snake-step">
-          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">1</div><div class="snake-step-title">Focus area selection</div></div>
+          <span class="snake-category cat-admin">⚙️ Project framing — architect / consultant</span>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">1</div><div class="snake-step-title">Top-down approach &amp; flexibility level</div></div>
           <div class="snake-roles">
             <span class="snake-role active role-consultant">Consultant</span>
             <span class="snake-role role-agent">Agent</span>
             <span class="snake-role role-stakeholder">Stakeholder</span>
           </div>
           <ul class="snake-actions">
-            <li><span class="role-icon">🧭</span>Picks up the at-risk areas identified in Discovery</li>
-            <li><span class="role-icon">📐</span>Defines the <strong>self-learning scope</strong> handed to the agent (admin)</li>
+            <li><span class="role-icon">🧭</span>Defines the project's <strong>top-down approach</strong> to the platform</li>
+            <li><span class="role-icon">📐</span>Sets the allowed level of flexibility / local adaptation vs. the standard</li>
           </ul>
-          <div class="snake-output"><strong>Output</strong> — Deep-dive perimeter + learning scope framed</div>
+          <div class="snake-output"><strong>Output</strong> — Top-down approach + flexibility/localization level defined</div>
         </div>
         <div class="snake-arrow-h">→</div>
         <div class="snake-step">
-          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">2</div><div class="snake-step-title">Field deep dive</div></div>
+          <span class="snake-category cat-admin">⚙️ Project framing — architect / consultant</span>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">2</div><div class="snake-step-title">Core Model &amp; learning modules set up</div></div>
+          <div class="snake-roles">
+            <span class="snake-role active role-consultant">Consultant</span>
+            <span class="snake-role role-agent">Agent</span>
+            <span class="snake-role role-stakeholder">Stakeholder</span>
+          </div>
+          <ul class="snake-actions">
+            <li><span class="role-icon">🏗️</span>The architect defines the <strong>Core Model scope modules</strong></li>
+            <li><span class="role-icon">📚</span>Defines the <strong>self-learning modules</strong> the agent will use with stakeholders</li>
+          </ul>
+          <div class="snake-output"><strong>Output</strong> — Core Model scope + learning modules configured</div>
+        </div>
+        <div class="snake-arrow-h">→</div>
+        <div class="snake-step">
+          <span class="snake-category cat-learning">🎓 Self-learning — customer stakeholders</span>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">3</div><div class="snake-step-title">Core Model self-learning (portal)</div></div>
           <div class="snake-roles">
             <span class="snake-role role-consultant">Consultant</span>
             <span class="snake-role active role-agent">Agent</span>
             <span class="snake-role active role-stakeholder">Stakeholder</span>
           </div>
           <ul class="snake-actions">
-            <li><span class="af-icon"></span><strong>Returns</strong> to the same personas as in Discovery</li>
-            <li><span class="af-icon"></span><strong>Probes deeper</strong> on each focus area</li>
+            <li><span class="af-icon"></span><strong>Familiarizes</strong> stakeholders with the Core Model, self-learning style</li>
+            <li><span class="af-icon"></span><strong>Answers</strong> control-check questions grounded in the Core Model's content &amp; documentation</li>
           </ul>
-          <div class="snake-output"><strong>Output</strong> — Detailed practices documented per focus area</div>
+          <div class="snake-output"><strong>Output</strong> — Stakeholders familiar with the Core Model</div>
         </div>
-        <div class="snake-arrow-h">→</div>
+      </div>
+
+      <div class="snake-turn-row"><span class="glyph">↩</span></div>
+
+      <div class="snake-row">
         <div class="snake-step">
-          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">3</div><div class="snake-step-title">Continuous learning</div></div>
+          <span class="snake-category cat-learning">🎓 Self-learning — customer stakeholders</span>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">4</div><div class="snake-step-title">Focus area deep dive</div></div>
           <div class="snake-roles">
             <span class="snake-role role-consultant">Consultant</span>
             <span class="snake-role active role-agent">Agent</span>
-            <span class="snake-role role-stakeholder">Stakeholder</span>
+            <span class="snake-role active role-stakeholder">Stakeholder</span>
           </div>
           <ul class="snake-actions">
-            <li><span class="af-icon"></span><strong>Refines</strong> its understanding of the market with every exchange (self-learning)</li>
-            <li><span class="af-icon"></span><strong>Stays bounded</strong> to the scope set by the admin</li>
+            <li><span class="af-icon"></span><strong>Returns</strong> to the Discovery focus areas with the same personas</li>
+            <li><span class="af-icon"></span><strong>Digs deeper</strong> to learn more and surface the real gaps vs. the Core Model</li>
           </ul>
-          <div class="snake-output"><strong>Output</strong> — Up-to-date market understanding model</div>
+          <div class="snake-output"><strong>Output</strong> — Focus areas deep-dived, real gaps surfaced</div>
         </div>
       </div>
 
@@ -940,21 +964,22 @@
 
       <div class="snake-row rtl">
         <div class="snake-step">
-          <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">4</div><div class="snake-step-title">Comparison to the core model</div></div>
+          <span class="snake-category cat-gap">🔍 Gap analysis — as-is vs. Core Model</span>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#1baf7a;">5</div><div class="snake-step-title">As-is vs. Core Model pattern</div></div>
           <div class="snake-roles">
             <span class="snake-role role-consultant">Consultant</span>
             <span class="snake-role active role-agent">Agent</span>
             <span class="snake-role role-stakeholder">Stakeholder</span>
           </div>
           <ul class="snake-actions">
-            <li><span class="af-icon"></span><strong>Compares</strong> each local practice to the reference core model</li>
-            <li><span class="af-icon"></span><strong>Qualifies</strong> the gap: direct fit, adaptable, or gap</li>
+            <li><span class="af-icon"></span><strong>Helps understand</strong> each gap and how it differs from the Core Model</li>
+            <li><span class="af-icon"></span><strong>Lays out</strong> the local as-is situation side by side with the Core Model pattern</li>
           </ul>
-          <div class="snake-output"><strong>Output</strong> — Fit/gap map per focus area</div>
+          <div class="snake-output"><strong>Output</strong> — As-is vs. Core Model gap map per focus area</div>
         </div>
         <div class="snake-arrow-h">→</div>
         <div class="snake-step">
-          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">5</div><div class="snake-step-title">Consultant review</div></div>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">6</div><div class="snake-step-title">Consultant review</div></div>
           <div class="snake-roles">
             <span class="snake-role active role-consultant">Consultant</span>
             <span class="snake-role role-agent">Agent</span>
@@ -968,7 +993,7 @@
         </div>
         <div class="snake-arrow-h">→</div>
         <div class="snake-step">
-          <div class="snake-step-top"><div class="snake-step-num" style="background:#1baf7a;">6</div><div class="snake-step-title">Stakeholder readout</div></div>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#0F4761;">7</div><div class="snake-step-title">Stakeholder readout</div></div>
           <div class="snake-roles">
             <span class="snake-role active role-consultant">Consultant</span>
             <span class="snake-role role-agent">Agent</span>
@@ -985,7 +1010,7 @@
 
     <div class="snake-phase-output">
       <span class="spo-icon">📤</span>
-      <span>Phase output → <strong>Detailed fit/gap map per focus area</strong> compared against the core model</span>
+      <span>Phase output → <strong>Top-down approach &amp; flexibility level defined</strong>, stakeholders familiar with the Core Model, and the <strong>detailed as-is vs. Core Model gap map</strong> per focus area</span>
     </div>
   </div>
 
