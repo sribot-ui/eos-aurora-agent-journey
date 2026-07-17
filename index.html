@@ -889,8 +889,12 @@
       <div class="snake-phase-badge" style="background:#2a78d6;">2</div>
       <div>
         <h3>F2T — Fit to Template</h3>
-        <p>Three things happen at once: the project defines its <strong>top-down approach</strong> and how much flexibility/localization the platform allows; the client stakeholders <strong>self-learn the Core Model</strong> with an Agentforce agent's help and deep dive on the Discovery focus areas; and the agent helps surface the <strong>real gaps</strong> between the local as-is and the Core Model.</p>
+        <p>Structured in <strong>3 parts + a final review</strong>: <strong>Admin/Config</strong> (consultant + agent frame the project), <strong>"I learn"</strong> (mandatory Core Model modules, persona by persona), <strong>"I dig deeper"</strong> (Discovery focus areas converted into qualified gaps), and a <strong>Gap Validation</strong> review. Unlike Discovery, this phase never produces a numeric score — every gap is qualified narratively and prioritized jointly by the consultant and the client sponsor.</p>
       </div>
+    </div>
+    <div class="om-cycle-note" style="margin-top:-6px;">
+      <span class="om-cycle-icon">🛑</span>
+      <span>Scoring boundary — the Discovery maturity score (Technical/Process/Governance/Change) never carries over into F2T. Gaps here are qualified, not scored: blocking go-live (yes/no), dependencies, estimated effort — decided by humans, never calculated by the agent.</span>
     </div>
 
     <div class="snake-track">
@@ -926,7 +930,7 @@
         </div>
         <div class="snake-arrow-h">→</div>
         <div class="snake-step">
-          <span class="snake-category cat-learning">🎓 Self-learning — customer stakeholders</span>
+          <span class="snake-category cat-learning">🎓 Part 2 — "I learn" — mandatory Core Model modules</span>
           <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">3</div><div class="snake-step-title">Core Model self-learning (portal)</div></div>
           <div class="snake-roles">
             <span class="snake-role role-consultant">Consultant</span>
@@ -934,10 +938,11 @@
             <span class="snake-role active role-stakeholder">Stakeholder</span>
           </div>
           <ul class="snake-actions">
-            <li><span class="af-icon"></span><strong>Familiarizes</strong> stakeholders with the Core Model, self-learning style</li>
-            <li><span class="af-icon"></span><strong>Answers</strong> control-check questions grounded in the Core Model's content &amp; documentation</li>
+            <li><span class="af-icon"></span><strong>Delivers</strong> mandatory modules per persona — CORE (tied to that persona's focus areas, blocking) vs. CONTEXT (other clouds/teams, optional)</li>
+            <li><span class="af-icon"></span><strong>Checks in after every feature</strong>, not at the end of a module — one question captures two distinct signals: did they understand it, and does it fit their process</li>
+            <li><span class="af-icon"></span><strong>Answers "not sure"</strong> with a RAG-grounded, source-cited reply — never improvised</li>
           </ul>
-          <div class="snake-output"><strong>Output</strong> — Stakeholders familiar with the Core Model</div>
+          <div class="snake-output"><strong>Output</strong> — Stakeholders certified on their mandatory modules, proto-gaps flagged feature by feature</div>
         </div>
       </div>
 
@@ -945,7 +950,7 @@
 
       <div class="snake-row">
         <div class="snake-step">
-          <span class="snake-category cat-learning">🎓 Self-learning — customer stakeholders</span>
+          <span class="snake-category cat-gap">🔍 Part 3 — "I dig deeper" — focus area to qualified gap</span>
           <div class="snake-step-top"><div class="snake-step-num" style="background:#2a78d6;">4</div><div class="snake-step-title">Focus area deep dive</div></div>
           <div class="snake-roles">
             <span class="snake-role role-consultant">Consultant</span>
@@ -953,8 +958,8 @@
             <span class="snake-role active role-stakeholder">Stakeholder</span>
           </div>
           <ul class="snake-actions">
-            <li><span class="af-icon"></span><strong>Returns</strong> to the Discovery focus areas with the same personas</li>
-            <li><span class="af-icon"></span><strong>Digs deeper</strong> to learn more and surface the real gaps vs. the Core Model</li>
+            <li><span class="af-icon"></span><strong>Returns</strong> to the Discovery focus areas with the same personas, restating why each one was flagged</li>
+            <li><span class="af-icon"></span><strong>Digs deeper</strong> with structured questions to confirm or refute the proto-gaps from Part 2</li>
           </ul>
           <div class="snake-output"><strong>Output</strong> — Focus areas deep-dived, real gaps surfaced</div>
         </div>
@@ -964,7 +969,7 @@
 
       <div class="snake-row rtl">
         <div class="snake-step">
-          <span class="snake-category cat-gap">🔍 Gap analysis — as-is vs. Core Model</span>
+          <span class="snake-category cat-gap">🔍 Part 3 — "I dig deeper" — focus area to qualified gap</span>
           <div class="snake-step-top"><div class="snake-step-num" style="background:#1baf7a;">5</div><div class="snake-step-title">As-is vs. Core Model pattern</div></div>
           <div class="snake-roles">
             <span class="snake-role role-consultant">Consultant</span>
@@ -972,22 +977,23 @@
             <span class="snake-role role-stakeholder">Stakeholder</span>
           </div>
           <ul class="snake-actions">
-            <li><span class="af-icon"></span><strong>Helps understand</strong> each gap and how it differs from the Core Model</li>
-            <li><span class="af-icon"></span><strong>Lays out</strong> the local as-is situation side by side with the Core Model pattern</li>
+            <li><span class="af-icon"></span><strong>Helps understand</strong> each gap and how it differs from the Core Model, citing the uploaded reference documentation</li>
+            <li><span class="af-icon"></span><strong>Lays out</strong> the local as-is situation side by side with the Core Model pattern — narrative, never scored</li>
           </ul>
           <div class="snake-output"><strong>Output</strong> — As-is vs. Core Model gap map per focus area</div>
         </div>
         <div class="snake-arrow-h">→</div>
         <div class="snake-step">
-          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">6</div><div class="snake-step-title">Consultant review</div></div>
+          <span class="snake-category cat-gap">🔍 Gap Validation — final review</span>
+          <div class="snake-step-top"><div class="snake-step-num" style="background:#eda100;">6</div><div class="snake-step-title">Gap Validation — tag &amp; arbitrate</div></div>
           <div class="snake-roles">
             <span class="snake-role active role-consultant">Consultant</span>
             <span class="snake-role role-agent">Agent</span>
             <span class="snake-role role-stakeholder">Stakeholder</span>
           </div>
           <ul class="snake-actions">
-            <li><span class="role-icon">🧭</span>Validates the qualification of each gap</li>
-            <li><span class="role-icon">✅</span>Prioritizes the gaps that will move into Design</li>
+            <li><span class="role-icon">🏷️</span>Every gap is tagged — CONFIRMED / PARTIAL / CONFLICT / UNCLEAR</li>
+            <li><span class="role-icon">🧭</span><strong>CONFLICT/UNCLEAR always require human arbitration</strong> — the agent may suggest a resolution, it never auto-resolves</li>
           </ul>
           <div class="snake-output"><strong>Output</strong> — Validated and prioritized fit/gap map</div>
         </div>
@@ -1000,8 +1006,8 @@
             <span class="snake-role active role-stakeholder">Stakeholder</span>
           </div>
           <ul class="snake-actions">
-            <li><span class="role-icon">📊</span>Shares the gaps with the business stakeholders</li>
-            <li><span class="role-icon">🤝</span>Aligns on priorities ahead of Design</li>
+            <li><span class="role-icon">📊</span>Shares the qualified Gap Register with the business stakeholders</li>
+            <li><span class="role-icon">🤝</span>Consultant + client sponsor jointly decide priority — never the agent</li>
           </ul>
           <div class="snake-output"><strong>Output</strong> — Gaps aligned, ready for Design</div>
         </div>
@@ -1010,7 +1016,7 @@
 
     <div class="snake-phase-output">
       <span class="spo-icon">📤</span>
-      <span>Phase output → <strong>Top-down approach &amp; flexibility level defined</strong>, stakeholders familiar with the Core Model, and the <strong>detailed as-is vs. Core Model gap map</strong> per focus area</span>
+      <span>Phase output → <strong>Top-down approach &amp; flexibility level defined</strong>, stakeholders certified on the Core Model, and a <strong>qualified Gap Register</strong> (narrative, no score) per focus area</span>
     </div>
   </div>
 
@@ -1331,6 +1337,58 @@
     <div class="verdict-chip" style="background:var(--red-wash);">
       <div class="range" style="color:var(--red);">Low score</div>
       <div class="label" style="color:#a12d2c;">WAIT ⛔</div>
+    </div>
+  </div>
+
+  <!-- ============ F2T ZOOM-IN : GAP TAGS, NO SCORE ============ -->
+  <div class="section-title">F2T — zoom in</div>
+  <div class="section-heading">Gaps are tagged and qualified — never scored</div>
+  <p style="font-size:13.5px; color:var(--text-secondary); max-width:820px; margin:-8px 0 24px; line-height:1.55;">
+    The Discovery maturity score answers one question — is this market ready to enter F2T? Once that gate is passed, F2T never scores anything again. Every gap gets a <strong>tag</strong> instead of a number, and priority is a decision made jointly by the consultant and the client sponsor — never calculated by the agent.
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon" style="background:var(--aqua-wash); color:var(--aqua);">✅</div>
+      <h3>Confirmed</h3>
+      <p>Aligned across every persona involved. The agent handles it, visible to the consultant.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:var(--yellow-wash); color:var(--yellow);">⚠️</div>
+      <h3>Partial</h3>
+      <p>Confirmed, but on a limited scope. The agent handles it, visible to the consultant.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:var(--red-wash); color:var(--red);">🔴</div>
+      <h3>Conflict</h3>
+      <p>Personas disagree — on scope, maturity, or priority. <strong>Always</strong> stops for human arbitration.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:var(--violet-wash); color:var(--violet);">❓</div>
+      <h3>Unclear</h3>
+      <p>The Q&amp;A didn't resolve it. Same rule — escalated to the consultant, never auto-resolved.</p>
+    </div>
+  </div>
+
+  <div class="output-mockup" style="margin-top:24px;">
+    <div class="output-header">🛡️ Qualified by the consultant · 📍 Example — Fictional gap, no client reference</div>
+    <div class="output-body" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
+      <div class="output-metric">
+        <span class="m-label">Blocking go-live</span>
+        <span class="m-value" style="font-size:18px; color:var(--critical);">Yes</span>
+      </div>
+      <div class="output-metric">
+        <span class="m-label">Dependencies</span>
+        <span class="m-value" style="font-size:15px; font-weight:600;">1 related gap</span>
+      </div>
+      <div class="output-metric">
+        <span class="m-label">Estimated effort</span>
+        <span class="m-value" style="font-size:18px;">Medium</span>
+      </div>
+      <div class="output-metric">
+        <span class="m-label">Priority</span>
+        <span class="m-value" style="font-size:15px; font-weight:600;">Set by consultant + sponsor</span>
+      </div>
     </div>
   </div>
 
